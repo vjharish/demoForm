@@ -1,0 +1,33 @@
+<button [routerLink]="['/List']" mat-raised-button>Back</button>
+<form [formGroup]="profileForm">
+  <h1>Registration Form</h1>
+  <mat-form-field>
+    <input matInput formControlName="fname" required placeholder="First Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput formControlName="lname" placeholder="Last Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput formControlName="uphone" required placeholder="Phone Number">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select formControlName="ugender" required placeholder="Gender">
+      <mat-option *ngFor="let i of genders" [value]="i.value">{{i.viewValue}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" formControlName="udob" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-checkbox formControlName="uactive">Active</mat-checkbox>
+  <br>
+  <br>
+  <button [routerLink]="['/List']" mat-stroked-button>Cancel</button>
+  <button mat-stroked-button [disabled]="!profileForm.valid" (click)="submit(profileForm.value)">{{id? 'update': 'Save'}}</button>
+</form>
